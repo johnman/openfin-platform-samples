@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>Window One</title>
+    </head>
+    <style>
+        body {
+            background-color: coral;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+    <script type="application/javascript">
+
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const passedMessage = document.getElementById("passed-message");
+            const windowName = document.getElementById("window-name");
+            windowName.innerText = fin.me.identity.name;
+            // subscribe to a specified application
+            fin.InterApplicationBus.subscribe({ uuid: fin.me.identity.uuid}, 'sample-topic', msg => {
+                console.log(msg);
+                passedMessage.innerText = msg;
+            }).then(() => console.log('Subscribed to the specified application')).catch(err => console.log(err));
+        });
+    </script>
+    <body>
+        <h1>
+            Window One
+        </h1>
+        <div>
+            <h4>Window Name:</h4>
+            <span id="window-name">Not Set</span>
+            <h4>Passed Message:</h4>
+            <span id="passed-message">None Received</span>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,45 @@
+{
+    "runtime": {
+        "arguments": "--v=1 --inspect",
+        "version": "stable"
+    },
+    "platform": {
+        "uuid": "platform_customization_local_messaging_sample",
+        "applicationIcon": "http://localhost:5001/favicon.ico",
+        "autoShow": false,
+        "defaultWindowOptions": {
+            "contextMenu": true,
+            "defaultWidth": 350,
+            "defaultHeight": 300,
+            "defaultLeft": 0,
+            "defaultTop": 0,
+            "saveWindowState": false,
+            "backgroundThrottling": true
+        }
+        },
+    "snapshot": {
+        "windows": [
+            {
+                "layout": {
+                    "content": [
+                        {
+                            "type": "stack",
+                            "id": "no-drop-target",
+                            "content": [
+                                {
+                                    "type": "component",
+                                    "componentName": "view",
+                                    "componentState": {
+                                        "name": "component_A1",
+                                        "processAffinity": "ps_1",
+                                        "url": "http://localhost:5001/platform-messaging/index.html"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}
