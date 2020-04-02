@@ -8,7 +8,7 @@ If you were using the InterApplicationBus to target specific windows in your app
 * If you drag a view to another window will it still receive the messages you send to it?
 * What happens if you capture a snapshot and restore it? Do the window/view names persist and still receive messages? 
 
-_Sample Usage_
+_Sample Usage (from root folder one level up from this directory)_
 
 ```
 npx http-server -p 5001 -c-1
