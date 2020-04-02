@@ -35,9 +35,9 @@ openfin -l -c http://localhost:5001/platform-autoshow/app.json
 
 Just clone this repo, start the webserver and use the openfin cli to get started.
 
-The logic is broken into a view main files:
+The logic is broken into a few main files:
 
 * app.json this specifies a providerUrl which is found in platform/provider.html. This loads two js files. One which initialises the platform (platform.js needed if you have a custom provider) and controller.js
 * platform/controller.js this is just some code to simulate an event triggering the launching of 2 windows and 2 windows with views. Two will autoshow themselves after loading and two are set visible through the controller.
-* index.js/index.html this has the ability to launch windows and windows with views. By default these views are hidden. You can then select them from the drop down and make them visible.
+* index.js/index.html this has the ability to launch windows and windows with views. By default these views are hidden. You can then select them from the drop down and make them visible with the show button.
 * the other html files are very basic files with minimal JavaScript logic.
