@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>View Hidden Show</title>
+    </head>
+    <style>
+        body {
+            background-color:mediumpurple;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+    <script type="application/javascript">
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const viewName = document.getElementById("view-name");
+            viewName.innerText = fin.me.identity.name;
+        });
+    </script>
+    <body>
+        <h1>
+            View Hidden Show
+        </h1>
+        <div>
+            <h4>View Name:</h4>
+            <span id="view-name">Not Set</span>
+            <h4>Shown when the hidden controller window decided it should</h4>
+            <span id="passed-message">None Received</span>
+        </div>
+    </body>
+</html>

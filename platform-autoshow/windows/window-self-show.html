@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>Window Self Show</title>
+    </head>
+    <style>
+        body {
+            background-color:teal;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+    <script type="application/javascript">
+
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const windowName = document.getElementById("window-name");
+            windowName.innerText = fin.me.identity.name;            
+
+            setTimeout(()=> {
+                // we now have the data that is needed
+                fin.Window.getCurrentSync().show();
+            }, 1500);
+        });
+    </script>
+    <body>
+        <h1>
+            Window Self Show
+        </h1>
+        <div>
+            <h4>Window Name:</h4>
+            <span id="window-name">Not Set</span>
+            <h4>Launched from a hidden window as autoshow false and decides when it is ready to show.</h4>
+        </div>
+    </body>
+</html>

@@ -24,3 +24,25 @@ If you were using the InterApplicationBus to target specific windows in your app
 * What happens if you capture a snapshot and restore it? Do the window/view names persist and still receive messages? 
 
 [Click here to read more...](platform-messaging/README.md)
+
+## [platform-autoshow](platform-autoshow/README.md)
+
+Can you hide windows/windows with views initially and then show them when they are ready?
+
+# From a hidden window with control logic
+
+* Can you launch a window with autoshow false?
+* Can you launch a window with a view with autoshow is false?
+* Can a window decide it is ready to be shown?
+* Can a view decide it is ready for the window to be shown?
+* Can the code that launched the window tell it to show?
+* Can the code that launched the window with a view tell it to show?
+
+# From a visible window 
+
+* Can you launch a window with autoshow false?
+* Can you launch a window with a view with autoshow false?
+* Can you tell a window to show itself?
+* Can you tell a window with a view to show itself?
+
+[Click here to read more...](platform-autoshow/README.md)

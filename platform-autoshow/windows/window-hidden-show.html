@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>Window Hidden Show</title>
+    </head>
+    <style>
+        body {
+            background-color:plum;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+    <script type="application/javascript">
+
+        window.addEventListener('DOMContentLoaded', (event) => {
+             const windowName = document.getElementById("window-name");
+            windowName.innerText = fin.me.identity.name;
+            // subscribe to a specified application
+        });
+    </script>
+    <body>
+        <h1>
+            Window Hidden Show
+        </h1>
+        <div>
+            <h4>Window Name:</h4>
+            <span id="window-name">Not Set</span>
+            <h4>Shown when the hidden controller window decided it should</h4>
+        </div>
+    </body>
+</html>
