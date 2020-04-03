@@ -11,7 +11,7 @@ If you were using the InterApplicationBus to target specific windows in your app
 _Sample Usage (from root folder one level up from this directory)_
 
 ```
-npx http-server -p 5001 -c-1
+npx http-server -p 5001 -c-1 or npm run local (after running npm install)
 openfin -l -c http://localhost:5001/platform-messaging/app.json
 ```
 

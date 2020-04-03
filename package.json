@@ -1,0 +1,28 @@
+{
+  "name": "openfin-platform-samples",
+  "version": "1.0.0",
+  "description": "This is a static example with no bundling and some sample projects",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve",
+    "local": "serve -l 5001"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnman/openfin-platform-samples.git"
+  },
+  "keywords": [
+    "openfin",
+    "platform"
+  ],
+  "author": "Ives van Hoorne",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/johnman/openfin-platform-samples/issues"
+  },
+  "homepage": "https://github.com/johnman/openfin-platform-samples#readme",
+  "devDependencies": {
+    "serve": "^11.2.0",
+    "@types/openfin": "^49.0.0"
+  }
+}
