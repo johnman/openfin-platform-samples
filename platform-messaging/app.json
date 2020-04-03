@@ -4,8 +4,8 @@
         "version": "stable"
     },
     "platform": {
-        "uuid": "platform_customization_local_messaging_sample",
-        "applicationIcon": "http://localhost:5001/favicon.ico",
+        "uuid": "platform_customization_messaging_sample",
+        "applicationIcon": "https://4k4o3.csb.app/favicon.ico",
         "autoShow": false,
         "defaultWindowOptions": {
             "contextMenu": true,
@@ -32,7 +32,7 @@
                                     "componentState": {
                                         "name": "component_A1",
                                         "processAffinity": "ps_1",
-                                        "url": "http://localhost:5001/platform-messaging/index.html"
+                                        "url": "https://4k4o3.csb.app/platform-messaging/index.html"
                                     }
                                 }
                             ]
