@@ -5,7 +5,9 @@ window.addEventListener("DOMContentLoaded", event => {
     const launchViewOne = document.getElementById("launch-view-one");
     const windowSelect = document.getElementById("launched-windows-select");
     const shownWindows = {};
-
+    let rootUrl = location.href.replace(location.pathname,'');
+    rootUrl = rootUrl.replace('#','');
+    
     function updateWindowSelect(name) {
         windowSelect.options[windowSelect.options.length] = new Option(
             name,
@@ -21,8 +23,8 @@ window.addEventListener("DOMContentLoaded", event => {
 
     async function launchView(name) {
         let viewName = "view-" + name + "-" + Date.now();
-        let url =
-            "http://localhost:5001/platform-autoshow/views/view-" +
+        let url = rootUrl +
+            "/platform-autoshow/views/view-" +
             name +
             ".html";
 
@@ -57,8 +59,8 @@ window.addEventListener("DOMContentLoaded", event => {
         let windowName = "window-" + name + "-" + Date.now();
 
         async function createWindow() {
-            let url =
-                "http://localhost:5001/platform-autoshow/windows/window-" +
+            let url = rootUrl + 
+                "/platform-autoshow/windows/window-" +
                 name +
                 ".html";
 

@@ -12,7 +12,7 @@ _Sample Usage (from root folder one level up from this directory)_
 
 ```
 npx http-server -p 5001 -c-1 or npm run local (after running npm install)
-openfin -l -c http://localhost:5001/platform-messaging/app.json
+openfin -l -c http://localhost:5001/platform-messaging/app.local.json
 ```
 
 ### Can you still have a window and send a message to it? 

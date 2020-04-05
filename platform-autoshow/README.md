@@ -24,7 +24,7 @@ _Sample Usage (from root folder one level up from this directory)_
 
 ```
 npx http-server -p 5001 -c-1 or npm run local (after running npm install)
-openfin -l -c http://localhost:5001/platform-autoshow/app.json
+openfin -l -c http://localhost:5001/platform-autoshow/app.local.json
 ```
 
 ###  Can you launch a window with autoshow false? / Can you launch a window with a view with autoshow is false? / Can a window decide it is ready to be shown? /Can a view decide it is ready for the window to be shown?

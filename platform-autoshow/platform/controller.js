@@ -1,7 +1,10 @@
 async function launchView(name) {
+    let rootUrl = location.href.replace(location.pathname,'');
+    rootUrl = rootUrl.replace('#','');
+
     let viewName = "view-" + name + "-" + Date.now();
-    let url =
-        "http://localhost:5001/platform-autoshow/views/view-" +
+    let url = rootUrl + 
+        "/platform-autoshow/views/view-" +
         name +
         ".html";
 
@@ -35,10 +38,12 @@ async function launchView(name) {
 
 async function launchWindow(name) {
     let windowName = "window-" + name + "-" + Date.now();
-
+    let rootUrl = location.href.replace(location.pathname,'');
+    rootUrl = rootUrl.replace('#','');
+    
     async function createWindow() {
-        let url =
-            "http://localhost:5001/platform-autoshow/windows/window-" +
+        let url = rootUrl + 
+            "/platform-autoshow/windows/window-" +
             name +
             ".html";
 
