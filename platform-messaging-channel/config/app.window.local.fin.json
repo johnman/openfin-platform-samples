@@ -1,0 +1,15 @@
+{
+  "devtools_port": 9090,
+  "licenseKey": "request-a-key",
+  "startup_app": {
+    "name": "OpenFin Template",
+    "description": "OpenFin Template",
+    "url": "http://localhost:5001/platform-messaging-channel/views/main/main.html",
+    "uuid": "channel-api-demo-openfin-window-template",
+    "autoShow": true,
+    "applicationIcon": "http://localhost:5001/favicon.ico"
+  },
+  "runtime": {
+    "version": "stable"
+  }
+}

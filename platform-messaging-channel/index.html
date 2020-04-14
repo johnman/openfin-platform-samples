@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>OpenFin Template</title>
+    <script src="/platform-messaging-channel/components/openfin-link.js"></script>
+    <script type="module" src="/platform-messaging-channel/js/index.js"></script>
+    <link rel="stylesheet" href="/platform-messaging-channel/style/main.css" />
+  </head>
+  <body>
+    <h1>This is a basic example of an OpenFin app.</h1>
+    <p>
+      You are running OpenFin Runtime version:
+      <span id="openfin-version"></span>
+    </p>
+    <p>
+      <openfin-link
+        show-in-fin="false"
+        href="fins://./platform-messaging-channel/config/app.platform.fin.json"
+        >Launch OpenFin Platform Application</openfin-link
+      >
+    </p>
+    <p>
+      <openfin-link
+        show-in-fin="false"
+        href="fins://./platform-messaging-channel/config/app.window.fin.json"
+        >Launch OpenFin Windowed Application</openfin-link
+      >
+    </p>
+    <p>
+      <openfin-link
+        show-in-fin="false"
+        href="fin://localhost:5001/platform-messaging-channel/config/app.platform.local.fin.json"
+        >Launch Local OpenFin Platform Application</openfin-link
+      >
+    </p>
+    <p>
+      <openfin-link
+        show-in-fin="false"
+        href="fin://./platform-messaging-channel/config/app.window.local.fin.json"
+        >Launch Local OpenFin Windowed Application</openfin-link
+      >
+    </p>
+  </body>
+</html>

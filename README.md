@@ -25,6 +25,16 @@ If you were using the InterApplicationBus to target specific windows in your app
 
 [Click here to read more...](platform-messaging/README.md)
 
+## [platform-messaging-channel](platform-messaging-channel/README.md)
+
+If you were using the InterApplicationBus Channel API and you wanted to know if it still worked the same then this is an example for you. 
+
+* Will the same logic that worked in a windowed application work in a view (short answer: yes)? 
+
+We include a window based application and run the same logic by having those windows loaded as views.
+
+[Click here to read more...](platform-messaging-channel/README.md)
+
 ## [platform-autoshow](platform-autoshow/README.md)
 
 Can you hide windows/windows with views initially and then show them when they are ready?

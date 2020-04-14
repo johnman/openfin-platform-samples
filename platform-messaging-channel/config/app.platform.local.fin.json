@@ -1,0 +1,105 @@
+{
+  "runtime": { "arguments": "--v=1 --inspect", "version": "alpha" },
+  "platform": {
+    "uuid": "platform_prototype_generated_channel_api_local",
+    "applicationIcon": "http://localhost:5001/favicon.ico",
+    "autoShow": false
+  },
+  "snapshot": {
+    "windows": [
+      {
+        "defaultWidth": 1500,
+        "defaultHeight": 950,
+        "defaultLeft": 0,
+        "defaultTop": 0,
+        "saveWindowState": false,
+        "backgroundThrottling": true,
+        "layout": {
+          "content": [
+            {
+              "type": "row",
+              "id": "mainRow",
+              "isClosable": true,
+              "reorderEnabled": true,
+              "title": "",
+              "content": [
+                {
+                  "type": "stack",
+                  "width": 50.697674418604656,
+                  "isClosable": true,
+                  "reorderEnabled": true,
+                  "title": "",
+                  "activeItemIndex": 0,
+                  "content": [
+                    {
+                      "type": "component",
+                      "componentName": "view",
+                      "componentState": {
+                        "url": "http://localhost:5001/platform-messaging-channel/views/channel/channel.html",
+                        "name": "component_1586877852728"
+                      },
+                      "isClosable": true,
+                      "reorderEnabled": true,
+                      "title": "view"
+                    }
+                  ]
+                },
+                {
+                  "type": "column",
+                  "isClosable": true,
+                  "reorderEnabled": true,
+                  "title": "",
+                  "width": 49.302325581395344,
+                  "content": [
+                    {
+                      "type": "stack",
+                      "height": 50,
+                      "isClosable": true,
+                      "reorderEnabled": true,
+                      "title": "",
+                      "activeItemIndex": 0,
+                      "content": [
+                        {
+                          "type": "component",
+                          "componentName": "view",
+                          "componentState": {
+                            "url": "http://localhost:5001/platform-messaging-channel/views/view-one/view-one.html",
+                            "name": "component_1586877882841"
+                          },
+                          "isClosable": true,
+                          "reorderEnabled": true,
+                          "title": "view"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "stack",
+                      "height": 50,
+                      "isClosable": true,
+                      "reorderEnabled": true,
+                      "title": "",
+                      "activeItemIndex": 0,
+                      "content": [
+                        {
+                          "type": "component",
+                          "componentName": "view",
+                          "componentState": {
+                            "url": "http://localhost:5001/platform-messaging-channel/views/view-two/view-two.html",
+                            "name": "component_1586877918164"
+                          },
+                          "isClosable": true,
+                          "reorderEnabled": true,
+                          "title": "view"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

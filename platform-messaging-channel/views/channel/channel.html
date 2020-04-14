@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Channel Demo Main</title>
+    <script type="module" src="/platform-messaging-channel/views/channel/channel.js"></script>
+    <link rel="stylesheet" href="/platform-messaging-channel/style/main.css" />
+  </head>
+  <body>
+    <h1>Channel Provider : Channel Name : example</h1>
+    <p>Number Of Connected Clients: <span id="number-of-clients"></span></p>
+    <p>
+      <button id="create-channel">
+        Create Channel
+      </button>
+      <button id="destroy-channel" disabled>
+        Destroy Channel
+      </button>
+      <button id="remove-action" disabled>
+        Remove Action
+      </button>
+      <button id="call-channel-provider-last-client" disabled>
+        Call last client
+      </button>
+      <button id="call-channel-provider-all-clients" disabled>
+        Call all clients
+      </button>
+      <button id="call-channel-provider-all-clients-error" disabled>
+        Call error action on clients
+      </button>
+      <button id="call-channel-provider-all-clients-nonexistent" disabled>
+        Call non-existent action on clients
+      </button>
+      <button id="clear-console">
+        Clear Console
+      </button>
+    </p>
+    <p>
+      <textarea name="" id="console" cols="30" rows="5"></textarea>
+    </p>
+  </body>
+</html>

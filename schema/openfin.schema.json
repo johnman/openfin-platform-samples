@@ -1,0 +1,637 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "JSON schema for OpenFin application configuration files",
+  "required": ["runtime", "shortcut", "startup_app"],
+  "additionalProperties": false,
+  "properties": {
+    "appAssets": {
+      "description": "Set this object to co-deploy native apps along with your app. (Runtime: 6+|RVM: 3+)",
+      "type": "array",
+      "items": {
+        "additionalProperties": false,
+        "required": ["alias", "src", "version"],
+        "properties": {
+          "alias": {
+            "type": "string",
+            "description": "Name of the asset. The name will be used in launchExternalProcess to launch the asset. (Runtime: 6+|RVM: 3+)"
+          },
+          "args": {
+            "type": "string",
+            "description": "The default command line arguments for the aforementioned target. (Runtime: 6+|RVM: 3+)"
+          },
+          "mandatory": {
+            "type": "boolean",
+            "description": "When set to true, the app will fail to load if the asset cannot be downloaded. When set to false, the app will continue to load if the asset cannot be downloaded. (Runtime: 6+|RVM: 3+)",
+            "default": true
+          },
+          "src": {
+            "type": "string",
+            "description": "URL to a zip file containing the package files (executables, dlls, etc…). (Runtime: 6+|RVM: 3+)"
+          },
+          "target": {
+            "type": "string",
+            "description": "Specifies default executable to launch. This option can be overridden in launchExternalProcess. (Runtime: 6+|RVM: 3+)"
+          },
+          "version": {
+            "type": "string",
+            "description": "Version of the package. To force new updates, increment the version. (Runtime: 6+|RVM: 3+)"
+          }
+        }
+      }
+    },
+    "assets_url": {
+      "type": "string",
+      "description": "If an application specifies a valid “assetsUrl”, then that “assetsUrl” will be used as the base portion of the URL instead of the OpenFin default, https://developer.openfin.co/release/."
+    },
+    "devtools_port": {
+      "type": "number",
+      "description": "You can access the Chromium development tools by navigating to the selected port, i.e.: http://localhost:9090. (Runtime: 6+|RVM: 3+)"
+    },
+    "dialogSettings": {
+      "description": "An optional object to customize the appearance of the RVM progress dialog. (Runtime: 6+|RVM: 3+)",
+      "additionalProperties": false,
+      "properties": {
+        "bgColor": {
+          "type": "number",
+          "description": "Determines the color of the dialog. Color value is a decimal representation of a 32 bit number (A,R,G,B). For instance : FF00FF00 or 4278255360 is fully opaque green. (Runtime: 6+|RVM: 3+)"
+        },
+        "logo": {
+          "type": "string",
+          "description": "Determines the logo or image in the progress dialog. The logo should be a semi-transparent PNG. 100×25 pixels. e.g. http://openfin.co/wp-content/uploads/2014/11/logo.png (Runtime: 6+|RVM: 3+)"
+        },
+        "progressBarBgColor": {
+          "type": "number",
+          "description": "Determines the background color of the area where the progress bar is displayed. E.g. 4278190080 (Runtime: 6+|RVM: 3+)"
+        },
+        "progressBarBorderColor": {
+          "type": "number",
+          "description": "Determines the border color of the progress bar. E.g. 4282137660 (Runtime: 6+|RVM: 3+)"
+        },
+        "progressBarFillColor": {
+          "type": "number",
+          "description": "Determines the color of the progress bar. E.g. 4281513430 (Runtime: 6+|RVM: 3+)"
+        },
+        "textColor": {
+          "type": "number",
+          "description": "Determines the color of the text displayed above the progress bar location. E.g. 4293980400 (Runtime: 6+|RVM: 3+)"
+        }
+      }
+    },
+    "licenseKey": {
+      "type": "string",
+      "description": "A string used as a licensing identifier for each customer/contract. The OpenFin team will generate this for your production app. (Runtime: 6+|RVM: 3+)"
+    },
+    "minimumRVMVersion": {
+      "type": "string",
+      "description": "Minimum RVM version required to run this app. The RVM will show an error if it attempts to run this app, and its version is less than the specified minimumRVMVersion (Runtime: 6+|RVM: 4.4.0.13+)"
+    },
+    "offlineAccess": {
+      "type": "boolean",
+      "description": "If true, enables offline application support when no internet access. (Runtime: 6+|RVM: 3.2.0.0+)",
+      "default": false
+    },
+    "overrideConfigUrl": {
+      "type": "string",
+      "description": "A string that enables you to update the location of your application manifest to a new location. The RVM will rename the location of the config and use the new one. Example: overrideConfigUrl: 'NEW_CONFIG_LOCATION' (Runtime: 6+|RVM: 3+)"
+    },
+    "runtime": {
+      "description": "Determines which runtime version the app will use.",
+      "additionalProperties": false,
+      "required": ["version"],
+      "properties": {
+        "arguments": {
+          "type": "string",
+          "description": "Command line arguments to set when launching the runtime. The OpenFin Runtime supports Chromium command line switches e.g.: “– –disable-accelerated-compositing – –enable-threaded-compositing” for a complete list of values please refer to current Chromium switches. (Runtime: 6+|RVM: 3+)"
+        },
+        "enableCacheMigration": {
+          "type": "boolean",
+          "description": "If true, then when the RVM detects that an app has upgraded its runtime version (e.g. from v8.1.0.0 -> 8.2.0.0), it will migrate Local Storage, IndexedDB, and winposCache data to the cache of the new version. (Runtime: 6+|RVM: 3.8.1.0+)",
+          "default": true
+        },
+        "fallbackVersion": {
+          "type": "string",
+          "description": "The RVM will fallback to this version if it fails to retrieve the desired Runtime version, assuming this version is already installed. (Runtime: 6+|RVM: 3+)"
+        },
+        "forceLatest": {
+          "type": "boolean",
+          "description": "If true, forces the runtime to always get the latest runtime version before launching (prevents background installs). (Runtime: 6+|RVM: 3+)",
+          "default": false
+        },
+        "futureVersion": {
+          "type": "string",
+          "description": "The RVM preloads this newer OpenFin version in preparation of an upgrade. The download occurs silently and does not interrupt the startup of your app in the current version. (Runtime: 6+|RVM: 3.3+)"
+        },
+        "version": {
+          "type": "string",
+          "oneOf": [
+            {
+              "pattern": "(\\d{1,3}\\.){3}\\d{1,3}"
+            },
+            {
+              "enum": ["alpha", "beta", "stable", "staging"]
+            }
+          ],
+          "description": "Specifies what version of the runtime the app should use. The value can either be a specific version or a release channel (e.g. alpha). (Runtime: 6+)"
+        }
+      }
+    },
+    "services": {
+      "type": "array",
+      "description": "An array of objects containing services to be launched with the application. See https://developers.openfin.co/docs/desktop-services (Runtime: 9+|RVM: 4.5+)",
+      "items": {
+        "type": "object"
+      }
+    },
+    "shortcut": {
+      "description": "Settings for the app’s desktop shortcut",
+      "additionalProperties": false,
+      "required": ["company", "icon", "name"],
+      "properties": {
+        "company": {
+          "type": "string",
+          "description": "Company name for the application shortcut. (Runtime: 6+|RVM: 3+)"
+        },
+        "description": {
+          "type": "string",
+          "description": "A short description of the application shortcut. Will be shown when hovering over the shortcut icon. (Runtime: 6+|RVM: 3+)"
+        },
+        "diagnostics-shortcut": {
+          "type": "boolean",
+          "description": "Creates a shortcut menu-item to run your application in Diagnostics Mode. Diagnostics Mode provides you and your end-users an opportunity to recreate previously reported issues within your application and remotely deliver the runtime debug logs to OpenFin. It can also be manually triggered by adding '-- --diagnostics' to the command line for your application. (Runtime: 6+|RVM: 3.6.1.0+)"
+        },
+        "force": {
+          "type": "boolean",
+          "description": "If set to true, a desktop icon is always created on application start-up (even when user has deleted it). If set to false, a desktop icon is created on initial application launch but not created on subsequent application launches. (Runtime: 6+|RVM: 3+)",
+          "default": false
+        },
+        "icon": {
+          "type": "string",
+          "description": "Location for the icon image to be used when installing the application shortcut. (Runtime: 6+|RVM: 3+)"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the application to display with the shortcut. (Runtime: 6+|RVM: 3+)"
+        },
+        "startMenuRootFolder": {
+          "type": "string",
+          "description": "Set this value with a folder path (e.g. foo/bar) and the RVM will create the start menu shortcut under RootFolder/Company/App. (Runtime: 6+|RVM: 3+)"
+        },
+        "target": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["automatic-start-up", "desktop", "start-menu"]
+          },
+          "description": "Locations for where the application shortcut is added on the desktop owner’s machine. Available options are “desktop”, “start-menu” and “automatic-start-up”. The default is start-menu and desktop. (Runtime: 6+|RVM: 3+)"
+        },
+        "uninstall-shortcut": {
+          "type": "boolean",
+          "description": "Removes the Start menu uninstall shortcut. (Runtime: 6+|RVM: 3+)",
+          "default": true
+        }
+      }
+    },
+    "splashScreenImage": {
+      "type": "string",
+      "description": "You can specify an image to display while the runtime is loading. It takes any image file (including semi-transparent PNGs). (Runtime: 6+|RVM: 3+)"
+    },
+    "startup_app": {
+      "description": "Specifies the application level configuration. (Runtime: 6+|RVM: 3+)",
+      "additionalProperties": false,
+      "required": ["name", "url", "uuid"],
+      "properties": {
+        "accelerator": {
+          "description": "The name of this builder instance, which can be specified in the only/except property of a provisioner.",
+          "additionalProperties": false,
+          "properties": {
+            "devtools": {
+              "type": "boolean",
+              "description": "If true, allows the Dev Tools to be opened with the keyboard shortcut: Ctrl+Shift+i.",
+              "default": false
+            },
+            "reload": {
+              "type": "boolean",
+              "description": "If true, allows a window to reload with the keyboard shortcuts: Ctrl+r or F5.",
+              "default": false
+            },
+            "reloadIgnoreCache": {
+              "type": "boolean",
+              "description": "If true, allows a window to reload while ignoring the cache with the keyboard shortcuts: Ctrl+Shift or Shift+F5.",
+              "default": false
+            },
+            "zoom": {
+              "type": "boolean",
+              "description": "If true, enables the Zoom keyboard shortcuts: Ctrl+ (Zoom in), Ctrl- (Zoom out) and Ctrl+0 (Restore to 100%).",
+              "default": false
+            }
+          }
+        },
+        "alwaysOnTop": {
+          "type": "boolean",
+          "description": "A flag to always position the window at the top of the window stack. [Updatable] (Runtime: 6+|RVM: 3+)",
+          "default": false
+        },
+        "api": {
+          "description": "Configurations for OpenFin API injection.",
+          "additionalProperties": false,
+          "properties": {
+            "iframe": {
+              "type": "object",
+              "description": "Configure if the the API should be injected into iframes based on domain.",
+              "additionalProperties": false,
+              "properties": {
+                "crossOriginInjection": {
+                  "type": "boolean",
+                  "description": "Controls if the fin API object is present for cross origin iframes.",
+                  "default": false
+                },
+                "sameOriginInjection": {
+                  "type": "boolean",
+                  "description": "Controls if the fin API object is present for same origin iframes.",
+                  "default": true
+                }
+              }
+            }
+          }
+        },
+        "applicationIcon": {
+          "type": "string",
+          "description": "A URL for the icon to be shown in the window title bar. (Runtime: 6+|RVM: 3+)"
+        },
+        "aspectRatio": {
+          "type": "number",
+          "description": "The aspect ratio of width to height to enforce for the window. If this value is equal to or less than zero, an aspect ratio will not be enforced. [Updatable]",
+          "default": 0
+        },
+        "autoShow": {
+          "type": "boolean",
+          "description": "A flag to automatically show the Window when it is created. (Runtime: 6+|RVM: 3+)",
+          "default": false
+        },
+        "backgroundColor": {
+          "type": "string",
+          "description": "The window's backfill color as a hexadecimal value, not to be confused with the content background color. This color briefly fills a window's (a) content area before its content is loaded as well as (b) newly exposed areas when growing a window. Setting this value to the anticipated content background color can help improve user experience. (Runtime: 6+|RVM: 3+)",
+          "default": "#000"
+        },
+        "childWindowAutoAuth": {
+          "type": "boolean",
+          "description": "Allow non API created child windows, such as window.open, to authenticate. (Runtime: 6+|RVM: 3+)",
+          "default": true
+        },
+        "clearChildSubscriptionsOnReload": {
+          "type": "boolean",
+          "description": "Clear InterApplication subscriptions of all child windows when main window is reloaded. (Runtime: 6+|RVM: 3+)",
+          "default": true
+        },
+        "contentNavigation": {
+          "description": "Defines where content can be obtained from. (Runtime: 6+|RVM: 3+)",
+          "type": "object",
+          "default": null,
+          "additionalProperties": false,
+          "properties": {
+            "whitelist": {
+              "type": "array",
+              "description": "An array of urls that supports * as a wildcard. Navigating to a domain that is not listed here is not supported if this array is specified. (Runtime: 6+|RVM: 3+)",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "contextMenu": {
+          "type": "boolean",
+          "description": "A flag to show the context menu when right-clicking on a window. Gives access to the Developer Console for the Window. [Updatable] (Runtime: 6+|RVM: 3+)",
+          "default": true
+        },
+        "cornerRounding": {
+          "description": "This defines and applies rounded corners for the window. [Updatable] (Runtime: 6+|RVM: 3+)",
+          "additionalProperties": false,
+          "properties": {
+            "height": {
+              "type": "number",
+              "description": "This defines and applies rounded corners for the window. (Runtime: 6+|RVM: 3+)"
+            },
+            "width": {
+              "type": "number",
+              "description": "This defines and applies rounded corners for the window. (Runtime: 6+|RVM: 3+)"
+            }
+          }
+        },
+        "customData": {
+          "type": "string",
+          "description": "A field that the user can attach serializable data to to be ferried around with the window options. When omitted, the default value of this property is the empty string. [Updatable]",
+          "default": ""
+        },
+        "customRequestHeaders": {
+          "type": "array",
+          "description": "Defines list of customRequestHeaders for requests sent by the window.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "urlPatterns": {
+                "type": "array",
+                "description": "List of URL patterns."
+              },
+              "headers": {
+                "type": "array",
+                "description": "List of headers (key:value)",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "customWindowAlert": {
+          "type": "boolean",
+          "description": "Application level event for handling window alerts. To enable an application listen on that application for the event 'window-alert-requested'. (Runtime: 6+|RVM: 3+)",
+          "default": false
+        },
+        "defaultCentered": {
+          "type": "boolean",
+          "description": "Specifies that the window will be positioned in the center of the primary monitor when loaded for the first time on a machine. When the window corresponding to that id is loaded again, the position from before the window was closed is used. (Runtime: 6+|RVM: 3+)",
+          "default": false
+        },
+        "defaultHeight": {
+          "type": "number",
+          "description": "The default height of the window. Specifies the height of the window when loaded for the first time on a machine. When the window corresponding to that id is loaded again, the height is taken to be the last height of the window before it was closed. (Runtime: 6+|RVM: 3+)",
+          "default": 500
+        },
+        "defaultLeft": {
+          "type": "number",
+          "description": "The default left position of the window. Specifies the position of the left of the window when loaded for the first time on a machine. When the window corresponding to that id is loaded again, the value of left is taken to be the last value before the window was closed. (Runtime: 6+|RVM: 3+)",
+          "default": 10
+        },
+        "defaultTop": {
+          "type": "number",
+          "description": "The default top position of the window. Specifies the position of the top of the window when loaded for the first time on a machine. When the window corresponding to that id is loaded again, the value of top is taken to be the last value before the window was closed. (Runtime: 6+|RVM: 3+)",
+          "default": 10
+        },
+        "defaultWidth": {
+          "type": "number",
+          "description": "The default width of the window. Specifies the width of the window when loaded for the first time on a machine. When the window corresponding to that id is loaded again, the width is taken to be the last width of the window before it was closed.",
+          "default": 800
+        },
+        "description": {
+          "type": "string",
+          "description": "The name for the window which must be unique within the context of the invoking Application."
+        },
+        "frame": {
+          "type": "boolean",
+          "description": "A flag to show the frame. [Updatable] (Runtime: 6+|RVM: 3+)",
+          "default": true
+        },
+        "icon": {
+          "type": "string",
+          "description": "A URL for the icon to be shown in the window title bar. Defaults to the OpenFin icon. [Updatable, Inheritable] (Runtime: 6+|RVM: 3+)"
+        },
+        "loadErrorMessage": {
+          "type": "string",
+          "description": "An error message to display when the application fails to load. A dialog box launches with the error message just before the runtime exits. Load fails such as failed DNS resolutions or aborted connections as well as cancellations, e.g., window.stop(), trigger this dialog. Client response codes such as '404 Not Found' are not treated as fails as they are valid server responses. (Runtime: 6+|RVM: 3+)",
+          "default": "There was an error loading the application."
+        },
+        "enableAppLogging": {
+          "type": "boolean",
+          "description": "If true, console.log, info, warning, and error messages for the app will be written to the app.log folder. (Runtime: 8.56.29.*+|RVM: 4.0.1.1+)",
+          "default": false
+        },
+        "logManagement": {
+          "description": "Object that contains properties for remote log management. (Runtime: 8.56.29.*+|RVM: 4.4.0.13+)",
+          "type": "object",
+          "default": null,
+          "additionalProperties": false,
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "If true, enables remote app log management. (Runtime: 8.56.29.*+|RVM: 4.4.0.13+)",
+              "default": false
+            },
+            "encryptionKey": {
+              "type": "string",
+              "description": "If present and logManagement is enabled, will use this key to encrypt an zipped log files before sending them to the specified remote server. Format is a base64 public RSA key. (Runtime: 8.56.29.*+|RVM: 4.4.0.13+)"
+            },
+            "url": {
+              "type": "string",
+              "description": "If log management is enabled, this is the url where zipped logs will be sent. (Runtime: 8.56.29.*+|RVM: 4.4.0.13+)",
+              "default": "https://log-manager.openfin.co"
+            }
+          }
+        },
+        "maxHeight": {
+          "type": "number",
+          "description": "The maximum height of a window. Will default to the OS defined value if set to -1. [Updatable] (Runtime: 6+|RVM: 3+)",
+          "default": -1
+        },
+        "maximizable": {
+          "type": "boolean",
+          "description": "A flag that lets the window be maximized. [Updatable] (Runtime: 6+|RVM: 3+)",
+          "default": true
+        },
+        "maxWidth": {
+          "type": "number",
+          "description": "The maximum width of a window. Will default to the OS defined value if set to -1. [Updatable] (Runtime: 6+|RVM: 3+)",
+          "default": 0
+        },
+        "minHeight": {
+          "type": "number",
+          "description": "The minimum height of a window. [Updatable] (Runtime: 6+|RVM: 3+)",
+          "default": 0
+        },
+        "minimizable": {
+          "type": "boolean",
+          "description": "A flag that lets the window be minimized. [Updatable] (Runtime: 8.56.29.*+|RVM: 4.4.0.13+)",
+          "default": true
+        },
+        "minWidth": {
+          "type": "number",
+          "description": "The minimum width of a window. [Updatable]"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name for the window which must be unique within the context of the invoking Application. (Runtime: 6+|RVM: 3+)"
+        },
+        "nonPersistent": {
+          "type": "boolean",
+          "description": "A flag to configure the application as a non persistent. Runtime exits if there are no persistent apps running. (Runtime: 6+|RVM: 3+)",
+          "default": false
+        },
+        "opacity": {
+          "type": "number",
+          "description": "A flag that specifies how transparent the window will be. This value is clamped between 0.0 and 1.0. [Updatable] (Runtime: 6+|RVM: 3+)",
+          "default": 1
+        },
+        "plugins": {
+          "type": "boolean",
+          "description": "A flag to enable Flash Player. (Runtime: 7+|RVM: 3+)",
+          "default": false
+        },
+        "preloadScripts": {
+          "type": "array",
+          "description": "An array of objects containing a path to a preload script (e.g., { url: 'http://path.to/your/preload_script.js' }). An optional mandatory flag can be specified within each object which, if set to false, will run subsequent scripts if the current one fails to load. For local files (which are retrieved but not cached), use the file:// protocol (e.g., 'file:///path/to/your/preload_script.js'). When omitted, inherits from the parent application. (Runtime: 6+|RVM: 3+)",
+          "items": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "full URL to the script."
+              },
+              "mandatory": {
+                "type": "boolean",
+                "description": "if set to false, other scripts will run if this one fails to load",
+                "default": true
+              }
+            }
+          }
+        },
+        "permissions": {
+          "type": "object",
+          "description": "Enable secured APIs (Runtime: 12+)",
+          "properties": {
+            "ExternalWindow": {
+              "type": "object",
+              "properties": {
+                "wrap": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "System": {
+              "type": "object",
+              "properties": {
+                "downloadAsset": {
+                  "type": "boolean"
+                },
+                "getAllExternalWindows": {
+                  "type": "boolean"
+                },
+                "launchExternalProcess": {
+                  "type": "boolean"
+                },
+                "readRegistryValue": {
+                  "type": "boolean"
+                },
+                "terminateExternalProcess": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        },
+        "resizable": {
+          "type": "boolean",
+          "description": "A flag to drop to allow the user to resize the window. [Updatable] (Runtime: 6+|RVM: 3+)",
+          "default": true
+        },
+        "resizeRegion": {
+          "description": "Define the attributes of the window's resize region. [Updatable] (Runtime: 6+|RVM: 3+)",
+          "additionalProperties": false,
+          "properties": {
+            "bottomRightCorner": {
+              "type": "number",
+              "description": "Defines a region in pixels of an additional square at the bottom right corner of a frameless window. (Runtime: 6+|RVM: 3+)",
+              "default": 4
+            },
+            "size": {
+              "type": "number",
+              "description": "Defines a region in pixels that will respond to user mouse interaction for resizing a frameless window. (Runtime: 6+|RVM: 3+)",
+              "default": 2
+            },
+            "sides": {
+              "type": "object",
+              "description": "Sides that a window can be resized from.",
+              "properties": {
+                "top": {
+                  "type": "boolean",
+                  "description": "Can you resize from the top."
+                },
+                "right": {
+                  "type": "boolean",
+                  "description": "Can you resize from the right."
+                },
+                "left": {
+                  "type": "boolean",
+                  "description": "Can you resize from the left."
+                },
+                "bottom": {
+                  "type": "boolean",
+                  "description": "Can you resize from the bottom."
+                }
+              }
+            }
+          }
+        },
+        "saveWindowState": {
+          "type": "boolean",
+          "description": "A flag to cache the location of the window or not. (Runtime: 6+|RVM: 3+)",
+          "default": true
+        },
+        "shadow": {
+          "type": "boolean",
+          "description": "A flag to display a shadow on frameless windows. shadow and cornerRounding are mutually exclusive. On Windows 7, Aero theme is required. (Runtime: 6+|RVM: 3+)",
+          "default": false
+        },
+        "showTaskbarIcon": {
+          "type": "boolean",
+          "description": "A flag to show the Window’s icon in the taskbar. (Runtime: 6+|RVM: 3+)",
+          "default": true
+        },
+        "state": {
+          "type": "string",
+          "enum": ["maximized", "minimized", "normal"],
+          "description": "A string that sets the window to be “minimized”, “maximized”, or “normal” on creation. (Runtime: 6+|RVM: 3+)",
+          "default": "normal"
+        },
+        "taskbarIcon": {
+          "type": "string",
+          "description": "The URL of an icon to be shown on the desktop. Support formats: Portable Network Graphic (PNG); Size: 256 x 256. (Runtime: 6+|RVM: 3+)"
+        },
+        "taskbarIconGroup": {
+          "type": "string",
+          "description": "Group your OpenFin apps in the Taskbar. If omitted, defaults to app's uuid"
+        },
+        "url": {
+          "type": "string",
+          "description": "The URL of the window. (Runtime: 6+|RVM: 3+)"
+        },
+        "uuid": {
+          "type": "string",
+          "description": "The UUID of the application, unique within the set of all other Applications running in OpenFin Runtime. (Runtime: 6+|RVM: 3+)"
+        },
+        "waitForPageLoad": {
+          "type": "boolean",
+          "description": "When set to false, the page will render before the “load” event is fired on the window. Caution, when false you will see an initial empty white window. (Runtime: 6+|RVM: 3+)",
+          "default": true
+        }
+      }
+    },
+    "supportInformation": {
+      "description": "An optional object to customize error messages.",
+      "additionalProperties": false,
+      "required": ["company", "email", "product"],
+      "properties": {
+        "company": {
+          "type": "string",
+          "description": "Displays the company name in the title bar for the support error dialog that appears when an application fails to load. (Runtime: 6+|RVM: 3+)"
+        },
+        "email": {
+          "type": "string",
+          "description": "Displays the email to contact in the support error dialog that appears when an application fails to load. (Runtime: 6+|RVM: 3+)"
+        },
+        "enableErrorReporting": {
+          "type": "boolean",
+          "description": "To disable the error reporting feature, set this value to false. (Runtime: 6+|RVM: 3+)",
+          "default": true
+        },
+        "forwardErrorReports": {
+          "type": "boolean",
+          "description": "When set to true, prompts end users with a dialog when a deployment error occurs from within the RVM and enables them send along log files from their machine. Error reports are delivered to your email address set in supportInformation. (Runtime: 6+|RVM: 3+)",
+          "default": false
+        },
+        "product": {
+          "type": "string",
+          "description": "Displays the product name or application name in the support error dialog that appears when an application fails to load. (Runtime: 6+|RVM: 3+)"
+        }
+      }
+    }
+  }
+}
