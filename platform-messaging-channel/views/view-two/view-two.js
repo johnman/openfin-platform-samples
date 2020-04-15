@@ -25,6 +25,8 @@ if (window.fin !== undefined) {
 
       logger.log("Connected to channel.");
 
+      logger.log("Channel Information available via returned client using client.providerIdentity : " + JSON.stringify(client.providerIdentity));
+
       logger.log("Registering throwError action on this client.");
 
       client.register("throwError", (payload, identity) => {
