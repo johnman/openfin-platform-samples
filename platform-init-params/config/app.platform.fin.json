@@ -1,0 +1,54 @@
+{
+  "runtime": { "arguments": "--v=1 --inspect", "version": "alpha" },
+  "platform": {
+    "uuid": "platform_prototype_generated_init_params",
+    "applicationIcon": "https://4k4o3.csb.app/favicon.ico",
+    "autoShow": false
+  },
+  "snapshot": {
+    "windows": [
+      {
+        "defaultWidth": 600,
+        "defaultHeight": 600,
+        "defaultLeft": 0,
+        "defaultTop": 0,
+        "saveWindowState": false,
+        "backgroundThrottling": true,
+        "layout": {
+          "content": [
+            {
+              "type": "row",
+              "id": "mainRow",
+              "isClosable": true,
+              "reorderEnabled": true,
+              "title": "",
+              "content": [
+                {
+                  "type": "stack",
+                  "width": 100,
+                  "isClosable": true,
+                  "reorderEnabled": true,
+                  "title": "",
+                  "activeItemIndex": 0,
+                  "content": [
+                    {
+                      "type": "component",
+                      "componentName": "view",
+                      "componentState": {
+                        "url": "https://4k4o3.csb.app/platform-init-params/views/main/main.html",
+                        "name": "component_1586877852728"
+                      },
+                      "isClosable": true,
+                      "reorderEnabled": true,
+                      "title": "view"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

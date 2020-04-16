@@ -56,3 +56,13 @@ Can you hide windows/windows with views initially and then show them when they a
 * Can you tell a window with a view to show itself?
 
 [Click here to read more...](platform-autoshow/README.md)
+
+## [platform-init-params](platform-init-params/README.md)
+
+If you were using the ability to pass data to your application as launch params (regardless of whether or not it was already running) and you wanted to know if it still worked the same in platform apps then this is an example for you. 
+
+* Will the same logic that worked in a windowed application work in a platform app (short answer: yes)? 
+
+We include a window based application and run the same logic in the platform application.
+
+[Click here to read more...](platform-init-params/README.md)
