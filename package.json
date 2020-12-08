@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/johnman/openfin-platform-samples#readme",
   "devDependencies": {
-    "serve": "^11.2.0",
-    "@types/openfin": "^49.0.0"
+    "@types/openfin": "^49.0.0",
+    "serve": "^11.3.2"
   }
 }

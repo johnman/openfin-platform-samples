@@ -1,195 +1,169 @@
 <html>
-  <head>
-    <title>Main Window</title>
-  </head>
-  <style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-    }
-  </style>
-  <script type="application/javascript">
-    window.addEventListener("DOMContentLoaded", event => {
-      const storageKey = "platform-messaging-sample-snapshot";
-      const storageKeyWindowSelect =
-        "platform-messaging-sample-snapshot-window-select";
-      const storageKeySnapShotApplied =
-        "platform-messaging-sample-snapshot-applied";
-      const send = document.getElementById("send-message");
-      const save = document.getElementById("save");
-      const apply = document.getElementById("apply");
-      const launchWindowOne = document.getElementById("launch-window-one");
-      const launchViewOne = document.getElementById("launch-view-one");
-      const windowSelect = document.getElementById("launched-windows-select");
-      const platform = fin.Platform.getCurrentSync();
-      let rootUrl = location.href.replace(location.pathname,'');
-      rootUrl = rootUrl.replace('#','');
+	<head>
+		<title>Main Window</title>
+	</head>
+	<style>
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			background: white;
+		}
+	</style>
+	<script type="application/javascript">
+		window.addEventListener("DOMContentLoaded", (event) => {
+			const storageKey = "platform-messaging-sample-snapshot";
+			const storageKeyWindowSelect = "platform-messaging-sample-snapshot-window-select";
+			const storageKeySnapShotApplied = "platform-messaging-sample-snapshot-applied";
+			const send = document.getElementById("send-message");
+			const save = document.getElementById("save");
+			const apply = document.getElementById("apply");
+			const launchWindowOne = document.getElementById("launch-window-one");
+			const launchViewOne = document.getElementById("launch-view-one");
+			const windowSelect = document.getElementById("launched-windows-select");
+			const platform = fin.Platform.getCurrentSync();
+			let rootUrl = location.href.replace(location.pathname, "");
+			rootUrl = rootUrl.replace("#", "");
 
-      function setup() {
-        let storedSelect = localStorage.getItem(storageKeyWindowSelect);
-        let snapShotApplied = localStorage.getItem(storageKeySnapShotApplied);
+			function setup() {
+				let storedSelect = localStorage.getItem(storageKeyWindowSelect);
+				let snapShotApplied = localStorage.getItem(storageKeySnapShotApplied);
 
-        if (snapShotApplied) {
-          localStorage.removeItem(storageKeySnapShotApplied);
-          if (
-            storedSelect !== undefined &&
-            storedSelect !== null &&
-            storedSelect !== ""
-          ) {
-            let selectOptions = JSON.parse(storedSelect);
-            selectOptions.forEach(entry => {
-              updateWindowSelect(entry);
-            });
-          }
-        }
-      }
+				if (snapShotApplied) {
+					localStorage.removeItem(storageKeySnapShotApplied);
+					if (storedSelect !== undefined && storedSelect !== null && storedSelect !== "") {
+						let selectOptions = JSON.parse(storedSelect);
+						selectOptions.forEach((entry) => {
+							updateWindowSelect(entry);
+						});
+					}
+				}
+			}
 
-      function updateWindowSelect(name) {
-        windowSelect.options[windowSelect.options.length] = new Option(
-          name,
-          name
-        );
-        if (send.disabled) {
-          send.disabled = false;
-        }
-        if (save.disabled) {
-            save.disabled = false;
-          }
-      }
+			function updateWindowSelect(name) {
+				windowSelect.options[windowSelect.options.length] = new Option(name, name);
+				if (send.disabled) {
+					send.disabled = false;
+				}
+				if (save.disabled) {
+					save.disabled = false;
+				}
+			}
 
-      async function launchView(name) {
-        let viewName = "view-" + name + "-" + Date.now();
-        let url = rootUrl + 
-          "/platform-messaging/views/view-" +
-          name +
-          ".html";
+			async function launchView(name) {
+				let viewName = "view-" + name + "-" + Date.now();
+				let url = rootUrl + "/platform-messaging/views/view-" + name + ".html";
 
-        console.log("Adding Window with View " + viewName + " is created");
-        updateWindowSelect(viewName);
-        const platform = fin.Platform.getCurrentSync();
+				console.log("Adding Window with View " + viewName + " is created");
+				updateWindowSelect(viewName);
+				const platform = fin.Platform.getCurrentSync();
 
-        await platform.createView({
-          url: url,
-          name: viewName
-        });
-      }
+				await platform.createView({
+					url: url,
+					name: viewName,
+				});
+			}
 
-      function launchWindow(name) {
-        let windowName = "window-" + name + "-" + Date.now();
+			function launchWindow(name) {
+				let windowName = "window-" + name + "-" + Date.now();
 
-        async function createWindow() {
-          let url = rootUrl + 
-            "/platform-messaging/windows/window-" +
-            name +
-            ".html";
+				async function createWindow() {
+					let url = rootUrl + "/platform-messaging/windows/window-" + name + ".html";
 
-          return fin.Platform.getCurrentSync().applySnapshot({
-            windows: [
-              {
-                defaultWidth: 300,
-                defaultHeight: 300,
-                defaultLeft: 200,
-                defaultTop: 200,
-                name: windowName,
-                saveWindowState: false,
-                url: url,
-                contextMenu: true
-              }
-            ]
-          });
-        }
+					return fin.Platform.getCurrentSync().applySnapshot({
+						windows: [
+							{
+								defaultWidth: 300,
+								defaultHeight: 300,
+								defaultLeft: 200,
+								defaultTop: 200,
+								name: windowName,
+								saveWindowState: false,
+								url: url,
+								contextMenu: true,
+							},
+						],
+					});
+				}
 
-        createWindow()
-          .then(() => {
-            console.log("Window " + windowName + " is created");
-            updateWindowSelect(windowName);
-          })
-          .catch(err => console.log(err));
-      }
+				createWindow()
+					.then(() => {
+						console.log("Window " + windowName + " is created");
+						updateWindowSelect(windowName);
+					})
+					.catch((err) => console.log(err));
+			}
 
-      send.onclick = () => {
-        if (windowSelect.options.length > 0) {
-          let name = windowSelect.options[windowSelect.selectedIndex].value;
-          let identity = { uuid: fin.me.identity.uuid, name: name };
-          console.log("Sending message to: " + JSON.stringify(identity));
-          fin.InterApplicationBus.send(
-            identity,
-            "sample-topic",
-            "From Main Window: " + Date.now()
-          )
-            .then(() => console.log("Message sent"))
-            .catch(err => console.log(err));
-        }
-      };
+			send.onclick = () => {
+				if (windowSelect.options.length > 0) {
+					let name = windowSelect.options[windowSelect.selectedIndex].value;
+					let identity = { uuid: fin.me.identity.uuid, name: name };
+					console.log("Sending message to: " + JSON.stringify(identity));
+					fin.InterApplicationBus.send(identity, "sample-topic", "From Main Window: " + Date.now())
+						.then(() => console.log("Message sent"))
+						.catch((err) => console.log(err));
+				}
+			};
 
-      save.onclick = async () => {
-        let snapShot = await platform.getSnapshot();
-        localStorage.setItem(storageKey, JSON.stringify(snapShot));
-        apply.disabled = false;
+			save.onclick = async () => {
+				let snapShot = await platform.getSnapshot();
+				localStorage.setItem(storageKey, JSON.stringify(snapShot));
+				apply.disabled = false;
 
-        let optionKeys = Object.keys(windowSelect.options);
+				let optionKeys = Object.keys(windowSelect.options);
 
-        let names = [];
-        optionKeys.forEach(key => {
-          names.push(windowSelect.options[key].value);
-        });
-        localStorage.setItem(storageKeyWindowSelect, JSON.stringify(names));
-      };
+				let names = [];
+				optionKeys.forEach((key) => {
+					names.push(windowSelect.options[key].value);
+				});
+				localStorage.setItem(storageKeyWindowSelect, JSON.stringify(names));
+			};
 
-      apply.onclick = async () => {
-        let storedSnapShot = localStorage.getItem(storageKey);
+			apply.onclick = async () => {
+				let storedSnapShot = localStorage.getItem(storageKey);
 
-        if (
-          storedSnapShot !== undefined &&
-          storedSnapShot !== null &&
-          storedSnapShot !== ""
-        ) {
-          let snapShot = JSON.parse(storedSnapShot);
-          localStorage.setItem(storageKeySnapShotApplied, true);
-          await platform.applySnapshot(snapShot, {
-            closeExistingWindows: true
-          });
-        }
-      };
+				if (storedSnapShot !== undefined && storedSnapShot !== null && storedSnapShot !== "") {
+					let snapShot = JSON.parse(storedSnapShot);
+					localStorage.setItem(storageKeySnapShotApplied, true);
+					await platform.applySnapshot(snapShot, {
+						closeExistingWindows: true,
+					});
+				}
+			};
 
-      launchWindowOne.onclick = event => {
-        event.preventDefault();
-        launchWindow("one");
-      };
+			launchWindowOne.onclick = (event) => {
+				event.preventDefault();
+				launchWindow("one");
+			};
 
-      launchViewOne.onclick = async event => {
-        event.preventDefault();
-        launchView("one");
-      };
-      setup();
-    });
-  </script>
-  <body>
-    <h1>
-      Main Window
-    </h1>
-    <div>
-      <ul>
-        <li>
-          <a title="Launch Window One" href="#" id="launch-window-one"
-            >Launch Window One</a
-          >
-        </li>
+			launchViewOne.onclick = async (event) => {
+				event.preventDefault();
+				launchView("one");
+			};
+			setup();
+		});
+	</script>
+	<body>
+		<h1>Main Window</h1>
+		<div>
+			<ul>
+				<li>
+					<a title="Launch Window One" href="#" id="launch-window-one">Launch Window One</a>
+				</li>
 
-        <li>
-          <a title="Launch Window With View" href="#" id="launch-view-one"
-            >Launch Window With View</a
-          >
-        </li>
-      </ul>
-    </div>
-    <h4>Message Launched Window/View:</h4>
-    <div>
-      <select id="launched-windows-select"></select>
-      <button id="send-message" disabled>Send Message</button>
-    </div>
-    <div>
-      <button id="save" disabled>Save SnapShot</button>
-      <button id="apply" disabled>Apply SnapShot</button>
-    </div>
-  </body>
+				<li>
+					<a title="Launch Window With View" href="#" id="launch-view-one"
+						>Launch Window With View</a
+					>
+				</li>
+			</ul>
+		</div>
+		<h4>Message Launched Window/View:</h4>
+		<div>
+			<select id="launched-windows-select"></select>
+			<button id="send-message" disabled>Send Message</button>
+		</div>
+		<div>
+			<button id="save" disabled>Save SnapShot</button>
+			<button id="apply" disabled>Apply SnapShot</button>
+		</div>
+	</body>
 </html>

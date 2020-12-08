@@ -1,41 +1,36 @@
 <html>
-  <head>
-    <title>Main Window</title>
-  </head>
-  <style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-    }
-  </style>
-  <script type="module" src="/platform-autoshow/index.js">
+	<head>
+		<title>Main Window</title>
+	</head>
+	<style>
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			background: white;
+		}
+	</style>
+	<script type="module" src="/platform-autoshow/index.js"></script>
+	<body>
+		<h1>Main Window</h1>
+		<div>
+			<ul>
+				<li>
+					<a title="Launch Window One" href="#" id="launch-window-one">Launch Window One</a>
+				</li>
 
-  </script>
-  <body>
-    <h1>
-      Main Window
-    </h1>
-    <div>
-      <ul>
-        <li>
-          <a title="Launch Window One" href="#" id="launch-window-one"
-            >Launch Window One</a
-          >
-        </li>
-
-        <li>
-          <a title="Launch Window With View" href="#" id="launch-view-one"
-            >Launch Window With View</a
-          >
-        </li>
-      </ul>
-    </div>
-    <h4>Message Launched Window/View:</h4>
-    <div>
-      <select id="launched-windows-select"></select>
-      <button id="send-message" disabled>Send Message</button>
-    </div>
-    <div>
-      <button id="show" disabled>Show Window/View</button>
-    </div>
-  </body>
+				<li>
+					<a title="Launch Window With View" href="#" id="launch-view-one"
+						>Launch Window With View</a
+					>
+				</li>
+			</ul>
+		</div>
+		<h4>Message Launched Window/View:</h4>
+		<div>
+			<select id="launched-windows-select"></select>
+			<button id="send-message" disabled>Send Message</button>
+		</div>
+		<div>
+			<button id="show" disabled>Show Window/View</button>
+		</div>
+	</body>
 </html>
