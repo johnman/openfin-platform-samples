@@ -1,7 +1,7 @@
 {
   "runtime": { "arguments": "--v=1 --inspect", "version": "alpha" },
   "platform": {
-    "uuid": "platform-save-view-data-example",
+    "uuid": "local-platform-save-view-data",
     "applicationIcon": "http://localhost:5001/favicon.ico",
     "autoShow": false
   },
@@ -35,7 +35,7 @@
                       "type": "component",
                       "componentName": "view",
                       "componentState": {
-                        "url": "http://localhost:5001/platform-init-params/views/main/main.html",
+                        "url": "http://localhost:5001/platform-save-view-data/views/view-one.html",
                         "name": "component_1586877852728"
                       },
                       "isClosable": true,

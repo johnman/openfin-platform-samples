@@ -4,7 +4,7 @@
   "description": "This is a static example with no bundling and some sample projects",
   "main": "index.html",
   "scripts": {
-    "start": "serve",
+    "start": "serve -l 5001",
     "local": "serve -l 5001"
   },
   "repository": {

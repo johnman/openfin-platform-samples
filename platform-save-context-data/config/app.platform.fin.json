@@ -1,8 +1,8 @@
 {
   "runtime": { "arguments": "--v=1 --inspect", "version": "alpha" },
   "platform": {
-    "uuid": "platform-save-view-data-example",
-    "applicationIcon": "http://localhost:5001/favicon.ico",
+    "uuid": "platform-save-window-context-data",
+    "applicationIcon": "https://4k4o3.csb.app/favicon.ico",
     "autoShow": false
   },
   "snapshot": {
@@ -35,7 +35,7 @@
                       "type": "component",
                       "componentName": "view",
                       "componentState": {
-                        "url": "http://localhost:5001/platform-init-params/views/main/main.html",
+                        "url": "https://4k4o3.csb.app/platform-save-context-data/views/view-one.html",
                         "name": "component_1586877852728"
                       },
                       "isClosable": true,
