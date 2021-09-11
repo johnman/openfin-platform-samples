@@ -14,7 +14,7 @@ npx http-server -p 5001 -c-1 or npm run local (after running npm install)
 openfin -l -c http://localhost:5001/platform-messaging/app.local.json
 ```
 
-## [platform-messaging](platform-messaging/README.md)
+## [platform-messaging](platform-messaging/)
 
 If you were using the InterApplicationBus to target specific windows in your application does this change when you move to platform? 
 
@@ -23,9 +23,9 @@ If you were using the InterApplicationBus to target specific windows in your app
 * If you drag a view to another window will it still receive the messages you send to it?
 * What happens if you capture a snapshot and restore it? Do the window/view names persist and still receive messages? 
 
-[Click here to read more...](platform-messaging/README.md)
+[Click here to read more...](platform-messaging/)
 
-## [platform-messaging-channel](platform-messaging-channel/README.md)
+## [platform-messaging-channel](platform-messaging-channel/)
 
 If you were using the InterApplicationBus Channel API and you wanted to know if it still worked the same then this is an example for you. 
 
@@ -33,9 +33,9 @@ If you were using the InterApplicationBus Channel API and you wanted to know if 
 
 We include a window based application and run the same logic by having those windows loaded as views.
 
-[Click here to read more...](platform-messaging-channel/README.md)
+[Click here to read more...](platform-messaging-channel/)
 
-## [platform-autoshow](platform-autoshow/README.md)
+## [platform-autoshow](platform-autoshow/)
 
 Can you hide windows/windows with views initially and then show them when they are ready?
 
@@ -55,9 +55,9 @@ Can you hide windows/windows with views initially and then show them when they a
 * Can you tell a window to show itself?
 * Can you tell a window with a view to show itself?
 
-[Click here to read more...](platform-autoshow/README.md)
+[Click here to read more...](platform-autoshow/)
 
-## [platform-init-params](platform-init-params/README.md)
+## [platform-init-params](platform-init-params/)
 
 If you were using the ability to pass data to your application as launch params (regardless of whether or not it was already running) and you wanted to know if it still worked the same in platform apps then this is an example for you. 
 
@@ -65,7 +65,7 @@ If you were using the ability to pass data to your application as launch params 
 
 We include a window based application and run the same logic in the platform application.
 
-[Click here to read more...](platform-init-params/README.md)
+[Click here to read more...](platform-init-params/)
 
 ## [platform-save-context-data](platform-save-context-data/)
 
