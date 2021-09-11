@@ -67,14 +67,14 @@ We include a window based application and run the same logic in the platform app
 
 [Click here to read more...](platform-init-params/README.md)
 
-## [platform-save-context-data](platform-save-context-data/README.md)
+## [platform-save-context-data](platform-save-context-data/)
 
 This example shows how you can get and set window context data from a view. Additionally it shows how you can listen to changes made to the context (either from other views or the host window). The example also demonstrates setting a value in a text box, setting the context and capturing it in a snapshot. It then has a button to apply the snapshot so that you can see the view retrieving the stored value.
 
-[Click here to read more...](platform-save-context-data/README.md)
+[Click here to read more...](platform-save-context-data/)
 
-## [platform-save-view-data](platform-save-view-data/README.md)
+## [platform-save-view-data](platform-save-view-data/)
 
 This example shows how you can get and set view custom data from a view. Additionally it shows how you can check for/get that data when the view loads. The example also demonstrates setting a value in a text box, setting the customData and capturing it in a snapshot. It then has a button to apply the snapshot so that you can see the view retrieving the stored value.
 
-[Click here to read more...](platform-save-view-data/README.md)
+[Click here to read more...](platform-save-view-data/)
